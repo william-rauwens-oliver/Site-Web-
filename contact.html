@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contact.css">
+    <title>Contact</title>
+</head>
+<body>
+    <nav>
+        <h1>MumuRelax</h1>
+        <div class="onglets">
+            <a href="index.html" class="active">Home</a>
+            <a href="cabinet.html">Mon cabinet</a>
+            <a href="#" onclick="handleRendezVousClick()">Prenez Rendez-vous</a>
+            <a href="tarifs.html">Tarifs</a>
+            <a href="#" onclick="handleConnexionClick()" id="login-link">Connexion</a>
+        </div>
+    </nav>  
+
+    <div class="contact-container">
+        <h1>Contactez la Sophrologue</h1>
+        <p>Pour prendre rendez-vous ou pour toute question, n'hésitez pas à me contacter :</p>
+
+        <address>
+            <strong>Nom de la Sophrologue</strong><br>
+            Adresse de la Cabinet<br>
+            Ville, Code Postal<br>
+            Téléphone : (123) 456-7890<br>
+            Email : sophrologue@email.com
+        </address>
+
+        <form action="process-form.php" method="post">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+    <script src="navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.calendar {
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#appointmentForm, #paymentForm {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #207cca;
+}
+/* Styles de la barre de navigation */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #ff858500; /* Rouge foncé */
+}
+
+nav h1 {
+    color: #000000; /* Noir */
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+
+nav .onglets {
+    margin-top: 3px;
+    margin-left: 300px;
+}
+
+nav .onglets a {
+    text-decoration: none;
+    color: #000000; /* Noir */
+    margin-right: 10px;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 5px;
+    transition: border-color 0.3s, color 0.3s; /* Ajoute une transition pour une animation en douceur */
+}
+
+nav .onglets a:hover {
+    border-color: #0eb6c2; /* Rouge foncé au survol */
+    color: #d5d6d6; /* Rouge foncé au survol */
+}
+
+/* Styles de l'en-tête */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('photo index.html/votre-image-de-fond.jpg');
+    background-size: cover;
+    color: #fff; /* Blanc */
+    padding: 40px;
+}
+
+@media screen and (max-width: 600px) {
+    #appointmentForm, #paymentForm {
+        width: 90%;
+    }
+}

@@ -1,0 +1,171 @@
+/* Importation des polices Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
+/* Configuration globale */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #02A2AF, #027BAF); /* Dégradé de blanc à gris clair en arrière-plan */
+}
+
+/* Styles de la barre de navigation */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #ff858500; /* Rouge foncé */
+}
+
+nav h1 {
+    color: #000000; /* Noir */
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+
+nav .onglets {
+    margin-top: 3px;
+    margin-left: 300px;
+}
+
+nav .onglets a {
+    text-decoration: none;
+    color: #000000; /* Noir */
+    margin-right: 10px;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 5px;
+    transition: border-color 0.3s, color 0.3s; /* Ajoute une transition pour une animation en douceur */
+}
+
+nav .onglets a:hover {
+    border-color: #0eb6c2; /* Rouge foncé au survol */
+    color: #d5d6d6; /* Rouge foncé au survol */
+}
+
+/* Styles de l'en-tête */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('photo index.html/votre-image-de-fond.jpg');
+    background-size: cover;
+    color: #fff; /* Blanc */
+    padding: 40px;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+}
+
+header h4 {
+    margin-top: -20px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+
+header button {
+    padding: 10px 20px;
+    background-color: #fff; /* Blanc */
+    color: #000000; /* Noir */
+    border: none;
+    margin-bottom: 30px;
+    outline: none;
+    font-size: 20px;
+    font-family: 'Playfair Display', serif;
+    cursor: pointer;
+}
+
+/* Styles de la section principale */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .content .card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.main .content .card .left {
+    flex: 0 0 50%;
+    padding: 30px;
+    background-color: rgb(209, 203, 203);
+    color: #757070;
+    border-radius: 10px;
+}
+
+.main .content .card .right img {
+    height: 300px;
+    width: 400px;
+    margin-top: 5px;
+}
+
+/* Styles du pied de page */
+footer {
+    margin-top: 40px;
+    border-top: 5px solid #6f6f6f00;
+    color: #141313;
+    padding: 30px 100px;
+}
+
+footer h1 {
+    font-family: 'Playfair Display', serif;
+    border-bottom: 1px solid rgb(83, 80, 80);
+    width: 40%;
+    padding-bottom: 5px;
+}
+
+footer .services {
+    margin-top: -10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+footer .services .service {
+    margin-right: 40px;
+}
+
+footer .services .service p {
+    max-width: 400px;
+}
+
+footer #contact {
+    color: rgb(181, 181, 181); /* Gris */
+}
+
+/* Media queries pour les écrans plus petits */
+@media screen and (max-width: 680px) {
+    nav .onglets {
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+
+    .main .card {
+        margin: 10px;
+    }
+
+    .main .content .card .right img {
+        height: 200px;
+        width: 100%;
+        margin-top: -0px;
+    }
+
+    .main .content .card {
+        display: block;
+    }
+
+    footer {
+        padding: 30px;
+    }
+}

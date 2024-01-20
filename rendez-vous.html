@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prise de Rendez-vous</title>
+    <link rel="stylesheet" href="rendez-vous.css">
+</head>
+<body>
+    <nav>
+        <h1>MumuRelax</h1>
+        <div class="onglets">
+            <a href="index.html" class="active">Home</a>
+            <a href="cabinet.html">Mon cabinet</a>
+            <a href="contact.html">Contact</a>
+            <a href="tarifs.html">Tarifs</a>
+            <a href="#" onclick="handleConnexionClick()" id="login-link">Connexion</a>
+        </div>
+    </nav>    
+    <h1>Prenez rendez-vous</h1>
+
+    <div class="calendar" id="calendar"></div>
+
+    <div id="appointmentForm">
+        <h2>Formulaire de Rendez-vous</h2>
+        <form>
+            <label for="selectedDate">Date :</label>
+            <input type="date" id="selectedDate" name="selectedDate" required>
+
+            <label for="selectedTime">Heure :</label>
+            <input type="time" id="selectedTime" name="selectedTime" required>
+            
+            <form action="/api/signup" method="POST">
+                <button type="button" onclick="submitPaymentAndAppointment()">Réserver</button>
+            </form>            
+    </div>
+
+    <div id="paymentForm">
+        <h2>Paiement en ligne</h2>
+        <form>
+            <label for="cardNumber">Numéro de carte de crédit :</label>
+            <input type="text" id="cardNumber" name="cardNumber" required>
+
+            <label for="expDate">Date d'expiration :</label>
+            <input type="text" id="expDate" name="expDate" placeholder="MM/AAAA" required>
+
+            <label for="cvv">CVV :</label>
+            <input type="text" id="cvv" name="cvv" required>
+
+            <button type="button" onclick="submitPayment()">Payer</button>
+        </form>
+    </div>
+
+    <script src="calendar+paiment.js"></script>
+    <script src="navigation.js"></script>
+</body>
+</html>

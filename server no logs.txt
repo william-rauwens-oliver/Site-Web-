@@ -1,0 +1,195 @@
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const passportLocalMongoose = require("passport-local-mongoose");
+const fs = require('fs');
+const nodemailer = require("nodemailer");
+
+const app = express();
+const port = 3000;
+
+app.use(express.static(path.join(__dirname)));
+app.use(bodyParser.json());
+app.use(require("express-session")({ secret: "your-secret-key", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+mongoose.connect("mongodb://localhost:27017/monagenda", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+// Fonction pour obtenir la date et l'heure actuelles
+function getCurrentDateTime() {
+    const currentDate = new Date();
+    return {
+        formattedDate: `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`,
+        formattedTime: `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`,
+    };
+}
+
+// Fonction pour obtenir la date et l'heure formatées
+function getFormattedDateTime() {
+    const { formattedDate, formattedTime } = getCurrentDateTime();
+    return `${formattedDate} ${formattedTime}`;
+}
+
+const userSchema = new mongoose.Schema({
+    username: String,
+    password: String,
+    email: String,
+    birthdate: String,
+    city: String,
+    appointments: [String],
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+const User = mongoose.model("User", userSchema);
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'botville11@gmail.com',
+        pass: 'MarseilleBruxelles13@',
+    },
+});
+
+// Endpoint pour s'inscrire (créer un compte)
+app.post("/api/signup", async (req, res) => {
+    try {
+        const { username, password, email, birthdate, city } = req.body;
+
+        console.log("Received data:", req.body);
+
+        const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+
+        console.log("Existing user:", existingUser);
+
+        if (existingUser) {
+            return res.status(400).json({ error: "Ce nom d'utilisateur ou cette adresse e-mail est déjà pris." });
+        }
+
+        const newUser = new User({ username, email, birthdate, city });
+
+        // Utiliser la méthode `register` pour enregistrer le nouvel utilisateur
+        User.register(newUser, password, async (err, user) => {
+            if (err) {
+                console.error('Erreur lors de l\'inscription :', err);
+                return res.status(500).json({ error: 'Erreur lors de l\'inscription. Veuillez réessayer.' });
+            }
+
+            const mailOptions = {
+                from: 'botville11@gmail.com',
+                to: email,
+                subject: 'Confirmation d\'inscription',
+                text: `Bienvenue, ${username}! Votre compte a été créé avec succès.`,
+            };
+
+            // Envoyer l'e-mail de confirmation
+            try {
+                await transporter.sendMail(mailOptions);
+                console.log('E-mail de confirmation envoyé avec succès.');
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi de l\'e-mail de confirmation :', error);
+            }
+
+            // Authentifier l'utilisateur après l'inscription
+            passport.authenticate("local")(req, res, () => {
+                // Rediriger l'utilisateur vers la page profile.html
+                res.redirect("/profile.html");
+
+                // Écrire dans le fichier journal
+                fs.appendFile('logs.txt', `Nouvelle inscription - Nom d'utilisateur: ${username}, Email: ${email}, Date: ${getFormattedDateTime()}\n`, (err) => {
+                    if (err) {
+                        console.error('Erreur lors de l\'écriture du journal :', err);
+                    }
+                });
+            });
+        });
+    } catch (error) {
+        console.error('Erreur lors de l\'inscription :', error);
+        res.status(500).json({ error: 'Erreur lors de l\'inscription. Veuillez réessayer.' });
+    }
+});
+
+// Endpoint pour se connecter
+app.post("/api/login", passport.authenticate("local"), (req, res) => {
+    const username = req.user.username;
+
+    // Rediriger l'utilisateur vers la page profile.html après la connexion réussie
+    res.redirect("/profile.html");
+
+    // Écrire dans le fichier journal
+    fs.appendFile('logs.txt', `Connexion réussie - Nom d'utilisateur: ${username}, Date: ${getFormattedDateTime()}\n`, (err) => {
+        if (err) {
+            console.error('Erreur lors de l\'écriture du journal :', err);
+        }
+    });
+});
+
+// Endpoint pour se déconnecter
+app.get("/api/logout", (req, res) => {
+    try {
+        req.logout(function(err) {
+            if (err) {
+                console.error('Erreur lors de la déconnexion :', err);
+                res.status(500).json({ error: 'Erreur lors de la déconnexion. Veuillez réessayer.' });
+            } else {
+                // Ajouter la date et l'heure dans le fichier journal
+                fs.appendFile('logs.txt', `Déconnexion réussie - Date: ${getFormattedDateTime()}\n`, (err) => {
+                    if (err) {
+                        console.error('Erreur lors de l\'écriture du journal :', err);
+                    }
+                });
+
+                res.json({ message: "Déconnexion réussie." });
+            }
+        });
+    } catch (error) {
+        console.error('Erreur lors de la déconnexion :', error);
+        res.status(500).json({ error: 'Erreur lors de la déconnexion. Veuillez réessayer.' });
+    }
+});
+
+// Nouvelle route pour récupérer les informations du profil
+app.get("/api/profile", async (req, res) => {
+    try {
+        // Assurez-vous que l'utilisateur est connecté
+        if (!req.isAuthenticated()) {
+            return res.status(401).json({ error: "Non autorisé. Veuillez vous connecter." });
+        }
+    
+        // Récupérez les informations du profil depuis la session utilisateur
+        const userProfile = {
+            username: req.user.username,
+            email: req.user.email,
+            birthdate: req.user.birthdate,
+            city: req.user.city,
+            appointments: req.user.appointments,
+        };
+    
+        res.json(userProfile);
+    } catch (error) {
+        console.error('Erreur lors de la récupération du profil :', error);
+        res.status(500).json({ error: 'Erreur lors de la récupération du profil. Veuillez réessayer.' });
+    }
+});
+
+// Endpoint pour vérifier si l'utilisateur est connecté
+app.get("/api/check-auth", (req, res) => {
+    res.json({ isAuthenticated: req.isAuthenticated() });
+});
+
+// ... (Autres routes)
+
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});

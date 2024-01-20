@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+main {
+    padding: 20px;
+}
+
+#user-info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+h2 {
+    color: #333;
+}
+/* Styles de la barre de navigation */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #ff858500; /* Rouge foncé */
+}
+
+nav h1 {
+    color: #000000; /* Noir */
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+
+nav .onglets {
+    margin-top: 3px;
+    margin-left: 300px;
+}
+
+nav .onglets a {
+    text-decoration: none;
+    color: #000000; /* Noir */
+    margin-right: 10px;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 5px;
+    transition: border-color 0.3s, color 0.3s; /* Ajoute une transition pour une animation en douceur */
+}
+
+nav .onglets a:hover {
+    border-color: #0eb6c2; /* Rouge foncé au survol */
+    color: #d5d6d6; /* Rouge foncé au survol */
+}
+
+/* Styles de l'en-tête */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('photo index.html/votre-image-de-fond.jpg');
+    background-size: cover;
+    color: #fff; /* Blanc */
+    padding: 40px;
+}

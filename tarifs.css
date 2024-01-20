@@ -1,0 +1,92 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #455aa6;
+    color: #d8d8d8;
+}
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #ff858500;
+}
+
+nav h1 {
+    color: #dddcdc;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+
+nav .onglets {
+    margin-top: 3px;
+    margin-left: 300px;
+}
+
+nav .onglets a {
+    text-decoration: none;
+    color: #cac9c9; /* Noir */
+    margin-right: 10px;
+    border-bottom: 1px solid #e6e5e5;
+    padding-bottom: 5px;
+    transition: border-color 0.3s, color 0.3s; /* Ajoute une transition pour une animation en douceur */
+}
+
+nav .onglets a:hover {
+    border-color: #0eb6c2; /* Rouge foncé au survol */
+    color: #11b8b8; /* Rouge foncé au survol */
+}
+.container {
+    max-width: 800px;
+    margin: 50px auto 0 auto;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+header {
+    background-image: url('Site-Web-Sophrologie/photo tarifs.html/banniere-sopho.jpg'); /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    background-color: #e9643b;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+main {
+    padding: 2em;
+    text-align: center;
+}
+
+section {
+    margin-bottom: 2em;
+}
+
+h2 {
+    color: #e6e4e4;
+    border-bottom: 2px solid #dfdede;
+    width: 30%;
+    margin: 0 auto;
+    padding-bottom: 0.5em;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+footer {
+    background-color: #e9643b;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 98.5%;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');

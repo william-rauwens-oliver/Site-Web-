@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <title>Profil</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>MumuRelax</h1>
+            <div class="onglets">
+                <a href="index.html" class="active">Home</a>
+                <a href="cabinet.html">Mon cabinet</a>
+                <a href="rendez-vous.html">Prenez Rendez-vous</a>
+                <a href="contact.html">Contact</a>
+                <a href="tarifs.html">Tarifs</a>
+                <a href="#" onclick="logout()">Déconnexion</a>
+            </div>
+        </nav>
+        <h1>Profil Utilisateur</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showUserInfo()">Informations Utilisateur</a></li>
+            <li><a href="#" onclick="showAgenda()">Agenda</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="user-info">
+            <h2>Informations Utilisateur</h2>
+            <p id="username">Nom d'utilisateur: </p>
+            <p id="email">Email: </p>
+            <p id="birthdate">Date de naissance: </p>
+            <p id="city">Ville: </p>
+        </section>
+        <section id="agenda">
+            <h2>Agenda</h2>
+            <ul id="appointment-list">
+                <!-- Les rendez-vous seront ajoutés ici dynamiquement -->
+            </ul>
+        </section>
+    </main>
+    <script src="profile.js"></script>
+</body>
+</html>
