@@ -1,4 +1,4 @@
-// Assurez-vous que cette fonction est appelée après la connexion de l'utilisateur
+// fonction est appelée après la connexion de l'utilisateur
 async function loadUserProfile() {
     try {
         const response = await fetch('/api/profile', {
