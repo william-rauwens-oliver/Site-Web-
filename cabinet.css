@@ -1,67 +1,124 @@
-body {
-    font-family: 'Roboto', sans-serif;
+/* Importation des polices Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Reset CSS */
+* {
     margin: 0;
     padding: 0;
-    background-color: #d1aaaa;
+    box-sizing: border-box;
+}
+
+/* Configuration globale */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
     color: #333;
-}
-header {
-    background-image: url('Site-Web-Sophrologie/photo tarifs.html/banniere-sopho.jpg'); /* Remplacez par le chemin de votre image */
-    background-size: cover;
-    background-color: #e9643b;
-    color: #fff;
-    padding: 1em;
-    text-align: center;
-    padding: 20px;
-}
-nav {
+    line-height: 1.6;
+    margin: 0; /* Assure que le corps ne comporte pas de marges par défaut */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 5px solid #ff858500; /* Rouge foncé */
+    flex-direction: column;
+    min-height: 100vh; /* Force le corps à occuper au moins la hauteur de l'écran */
+    position: relative; /* Positionnement relatif pour le positionnement absolu du footer */
+}
+
+/* Styles du nav bar */
+nav {
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px 30px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav h1 {
-    color: #000000; /* Noir */
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
+    color: #2e8b57;
+    font-size: 24px;
+    font-weight: 700; /* Plus de poids pour le titre */
+    margin-right: auto;
 }
 
 nav .onglets {
-    margin-top: 3px;
-    margin-left: 300px;
+    display: flex;
+    gap: 20px;
 }
 
 nav .onglets a {
     text-decoration: none;
-    color: #000000; /* Noir */
-    margin-right: 10px;
-    border-bottom: 1px solid #000000;
-    padding-bottom: 5px;
-    transition: border-color 0.3s, color 0.3s; /* Ajoute une transition pour une animation en douceur */
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 nav .onglets a:hover {
-    border-color: #0eb6c2; /* Rouge foncé au survol */
-    color: #dee7e4; /* Rouge foncé au survol */
+    background: #2e8b57;
+    color: #fff;
 }
 
-main {
-    padding: 2em;
+/* Styles de l'en-tête */
+header {
+    background-color: #455aa6;
+    color: #fff;
     text-align: center;
+    padding: 100px 20px;
+    background-image: linear-gradient(to right, rgba(69, 90, 166, 0.8), rgba(69, 90, 166, 0.8)), url('banniere-sopho.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Styles de la section principale */
+main {
+    flex: 1; /* Utilisation de flex pour que le contenu s'étende et pousse le footer vers le bas */
+    padding: 40px 20px;
 }
 
 section {
-    margin-bottom: 2em;
+    margin-bottom: 40px;
+}
+
+.section-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.neumorphism {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.neumorphism:hover {
+    transform: translate(4px, 4px);
 }
 
 h2 {
-    color: #455aa6;
-    border-bottom: 2px solid #455aa6;
-    width: 50%;
-    margin: 0 auto;
-    padding-bottom: 0.5em;
+    color: #2e8b57;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 ul {
@@ -70,31 +127,20 @@ ul {
 }
 
 li {
-    margin-bottom: 0.5em;
+    margin-bottom: 10px;
 }
 
 address {
     font-style: normal;
 }
 
+/* Styles du pied de page */
 footer {
     background-color: #455aa6;
     color: #fff;
     text-align: center;
-    padding: 1em;
-    position: absolute;
-    bottom: 0;
-    width: 98.5%;
-}
-
-@media (max-width: 768px) {
-    .onglets {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .onglets a {
-        margin: 10px 0;
-    }
+    padding: 20px 0;
+    border-radius: 20px;
+    margin-top: auto; /* Assure que le footer reste en bas de la page */
+    box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.1);
 }
